@@ -8,3 +8,5 @@ transcode.js <input> <output>
 ```
 
 To adjust some settings see the source.
+
+Compile ffmpeg with https://github.com/HaraldWeber/docker-build-ffmpeg
