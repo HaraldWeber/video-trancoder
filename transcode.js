@@ -95,8 +95,8 @@ var calcSettings = function(inputMedia) {
     LOG('Bitrate: ' + Math.round(video.bitrate/1000) + ' kbit');
 	var copy_video = true;
 	var videoBitrate = Math.sqrt((inputMedia.video.width * inputMedia.video.width +
-							inputMedia.video.height * inputMedia.video.height) * 1.6) * 1000;
-	if (inputMedia.video.bitrate < videoBitrate * 1.25) {
+							inputMedia.video.height * inputMedia.video.height) * 1.8) * 1000;
+	if ((videoBitrate == 0) || (inputMedia.video.bitrate < videoBitrate * 1.25)) {
 		// just copy the video stream
 		videoBitrate = 0;
 		copy_video = true;
