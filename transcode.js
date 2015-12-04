@@ -150,7 +150,7 @@ var calcSettings = function(inputMedia) {
                 LOG('Lang:' + audio.language);
                 LOG('Channels: ' + audio.channels);
                 LOG('Bitrate: ' + Math.round(audio.bit_rate/1000) + ' kbit');
-				if (audio.bit_rate <= audio.channels * 100000) {
+				if (audio.bit_rate <= audio.channels * 100000 && audio.bit_rate > 0) {
 					bitrate = audio.bit_rate;
 					copy_audio = true;
                     LOG('Action: copy');
@@ -203,7 +203,7 @@ var parseAudioInfo = function(audioData) {
 	var audioBitrate = 0;
 	if (typeof audioData.bit_rate !== 'undefined') {
 		audioBitrate = audioData.bit_rate;
-	} else if (typeof audioData.tags.BPS !== 'undefined') {
+	} else if (typeof audioData.tags !== 'undefined' && typeof audioData.tags.BPS !== 'undefined') {
 		audioBitrate = audioData.tags.BPS; 
 	}
 
