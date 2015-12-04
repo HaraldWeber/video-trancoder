@@ -218,11 +218,17 @@ var parseAudioInfo = function(audioData) {
 };
 
 var parseSubtitleInfo = function(subtitleData) {
+    var lang; 
+	if (typeof subtitleData.tags !== 'undefined') {
+        lang = subtitleData.tags.language;
+    } else {
+        lang = "undefined";
+    }
 	var subtitle = {
 		"index": subtitleData.index,
 		"default": subtitleData.disposition.default,
 		"forced": subtitleData.disposition.forced,
-		"language": subtitleData.tags.language
+		"language": lang
 	}
 	return subtitle;
 };
