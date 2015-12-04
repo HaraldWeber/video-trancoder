@@ -356,7 +356,7 @@ getMediaJson(inputFile, function(json) {
 	var options = assembleFFmpegOptions(outputMedia);
 
 	var timeStart = new Date();
-	var ffmpeg = spawn('ffmpeg', options, { env: process.env});
+	var ffmpeg = spawn('nice', ["-n", "19", "ffmpeg"].concat(options), { env: process.env});
 	var encodingStats = {};
 	encodingStats.startTime = Date.now() / 1000;
 	encodingStats.videoLength = outputMedia.duration;
@@ -367,6 +367,7 @@ getMediaJson(inputFile, function(json) {
 
 	ffmpeg.stderr.on('data', function (data) {
 		var line = data + '';
+        process.stdout.write(line);
 		if (line.indexOf('frame=') > -1) {
 
 			var lineData = line.split('=');
